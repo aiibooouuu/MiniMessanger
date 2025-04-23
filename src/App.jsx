@@ -176,12 +176,13 @@ function App() {
             <p>{post.content}</p>
           </div>
           <div className="post-actions">
-            <button
-              onClick={() => toggleLike(post._id)}
-              className={likedPosts.includes(post._id) ? "liked" : "like"}
-            >
-              LIKE
-            </button>
+          <button
+            onClick={() => toggleLike(post._id)}
+            className={likedPosts.includes(post._id) ? "liked" : "like"}
+          >
+            LIKE
+          </button>
+          <span className="like-count">❤️ {post.likes || 0}</span>
             {/* <button className="delete" onClick={() => deletePost(post._id)}>
               DELETE
             </button> */}
