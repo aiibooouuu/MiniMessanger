@@ -270,12 +270,11 @@ button.delete {
     margin: 0;
     height: auto;
     width: auto;
-    padding: 10px;
   }
 
   .sidebar {
     width: 90%;
-    margin: 2rem ; /* Center the sidebar horizontally */
+    margin: 2rem auto; /* Center the sidebar horizontally */
     border-radius: 12px;
     padding: 2rem;
     text-align: center; /* Center-align the content inside the sidebar */
@@ -283,7 +282,7 @@ button.delete {
 
   .feed {
     width: 90%; /* Match the width of the sidebar */
-    margin: 0 ; /* Center the feed horizontally */
+    margin: 0 auto; /* Center the feed horizontally */
     height: auto;
     overflow-y: visible;
   }
