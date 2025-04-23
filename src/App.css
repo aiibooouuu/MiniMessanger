@@ -261,3 +261,25 @@ button.delete {
   margin-top: 10px;
 
 }
+
+
+@media (max-width: 480px) {
+  .sidebar {
+    padding: 0.5rem;
+  }
+
+  .username-input,
+  .dropdown {
+    font-size: 0.9rem;
+    padding: 0.8rem;
+  }
+
+  .post-form textarea {
+    height: 80px;
+  }
+
+  button {
+    font-size: 0.9rem;
+    padding: 0.4rem 0.8rem;
+  }
+}
