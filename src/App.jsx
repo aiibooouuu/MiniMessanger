@@ -10,10 +10,6 @@ function App() {
   const [likedPosts, setLikedPosts] = useState([]);
   const [selectedEmoji, setSelectedEmoji] = useState("🙂");
   const [selectedColor, setSelectedColor] = useState("#7f08e05b");
-  const [currentChannel, setCurrentChannel] = useState(null);
-  const [channels, setChannels] = useState(["Channel 1", "Channel 2", "Channel 3"]);
-  const [channelPassword, setChannelPassword] = useState("");
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
 
   useEffect(() => {
@@ -95,76 +91,12 @@ function App() {
     );
   };
 
-  if (!isAuthenticated) {
-    return (
-        <div className="channel-selection">
-            <h2>Select a Channel</h2>
-            {channels.map((channel, index) => (
-                <div key={index} className="channel-option">
-                    <span>{channel}</span>
-                    <button
-                        onClick={() => setCurrentChannel(channel)}
-                    >
-                        Join
-                    </button>
-                </div>
-            ))}
-            {currentChannel && (
-                <div className="channel-password">
-                    <h3>Enter Password for {currentChannel}</h3>
-                    <input
-                        type="password"
-                        value={channelPassword}
-                        onChange={(e) => setChannelPassword(e.target.value)}
-                    />
-                    <button
-                        onClick={async () => {
-                            try {
-                                const res = await fetch(`${BACKEND_URL}/channels/validate`, {
-                                    method: "POST",
-                                    headers: { "Content-Type": "application/json" },
-                                    body: JSON.stringify({
-                                        name: currentChannel,
-                                        password: channelPassword,
-                                    }),
-                                });
-
-                                if (res.ok) {
-                                    const channelData = await res.json();
-                                    setIsAuthenticated(true);
-                                    setPosts(channelData.posts);
-                                } else {
-                                    alert("Invalid password");
-                                }
-                            } catch (err) {
-                                console.error("Error validating channel:", err);
-                            }
-                        }}
-                    >
-                        Enter
-                    </button>
-                </div>
-            )}
-        </div>
-    );
-}
-
   return (
     <div className="app-container">
-        <button
-            className="back-button"
-            onClick={() => {
-                setIsAuthenticated(false);
-                setCurrentChannel(null);
-                setChannelPassword("");
-            }}
-        >
-            Back to Channels
-        </button>
-        <div className="sidebar">
-            <h2>{currentChannel} 🗣️</h2>
-            <form onSubmit={handleSubmit} className="post-form">
-                <div className="emoji-picker">
+      <div className="sidebar">
+        <h2>Mini Messanger 🗣️</h2>
+        <form onSubmit={handleSubmit} className="post-form">
+        <div className="emoji-picker">
           {["🙂", "😎", "😢", "🔥", "🎉", "🤖", "😡", "😇", "💡", "🥳"].map((emoji, index) => (
             <span
               key={index}
@@ -225,11 +157,16 @@ function App() {
             </button>
           </div>
         </form>
-        </div>
-        <div className="feed">
-            {posts.map((post) => (
-                <div key={post._id} className="post">
-                    <div className="post-header">
+      </div>
+
+      <div className="feed">
+        {posts.map((post) => (
+          <div
+          key={post._id}
+          className="post"
+          style={{ backgroundColor: post.bgColor || console.log(post.bgColor) }}
+        >
+          <div className="post-header">
             <small className="timestamp">
               {new Date(post.createdAt).toLocaleString()} &nbsp;
             </small>
@@ -249,11 +186,13 @@ function App() {
               DELETE
             </button> */}
           </div>
-                </div>
-            ))}
         </div>
+        
+        
+        ))}
+      </div>
     </div>
-);
+  );
 }
 
 export default App;
