@@ -35,7 +35,7 @@ const allowedOrigins = [
 app.use(cors({
     origin: function (origin, callback) {
         if (!origin || allowedOrigins.includes(origin)) {
-            callback(null, true);  // Allow the request
+            callback(null, origin); // Dynamically set the origin
         } else {
             callback(new Error("CORS not allowed by this server"));  // Block the request
         }
@@ -43,6 +43,8 @@ app.use(cors({
     methods: ["GET", "POST", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type"],
 }));
+
+app.options("*", cors()); // Handle preflight requests
 
 app.use((req, res, next) => {
     console.log("Request Origin:", req.headers.origin); // Debugging CORS
