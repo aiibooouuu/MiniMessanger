@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 
-const BACKEND_URL = "http://localhost:5000";
+const BACKEND_URL = "https://minimessanger.onrender.com";
 
 function App() {
   const [posts, setPosts] = useState([]);

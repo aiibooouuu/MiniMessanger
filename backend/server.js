@@ -26,10 +26,15 @@ const Post = mongoose.model("Post", postSchema);
 
 // Initialize Express app
 const app = express();
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
 // Middleware
-app.use(cors());
+// Middleware
+app.use(cors({
+    origin: "https://mini-messanger.vercel.app/",  // Allow only requests from your frontend (update this URL if deployed)
+    methods: ["GET", "POST", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type"],
+}));
 app.use(express.json());
 
 // Get all posts
