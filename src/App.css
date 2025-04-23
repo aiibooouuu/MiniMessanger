@@ -79,7 +79,7 @@ button:hover {
   flex-grow: 1;
   width: 800px;
   overflow-y: scroll;
-  height: 600px;
+  height: 800px;
 }
 
 .feed::-webkit-scrollbar{
