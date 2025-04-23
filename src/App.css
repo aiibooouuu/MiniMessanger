@@ -281,14 +281,15 @@ button.delete {
 
   .feed {
     width: 100%;
-    padding: 1rem;
+    /* padding: 1rem; */
     height: auto;
     overflow-y: visible;
+    
   }
 
   .post {
     margin: 1rem 0.5rem;
-    padding: 1rem;
+    /* padding: 1rem; */
   }
 
   textarea,
