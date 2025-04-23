@@ -274,22 +274,21 @@ button.delete {
 
   .sidebar {
     width: 90%;
-    margin: 2rem auto;
+    margin: 2rem auto; /* Center the sidebar horizontally */
     border-radius: 12px;
     padding: 2rem;
+    text-align: center; /* Center-align the content inside the sidebar */
   }
 
   .feed {
-    width: 100%;
-    /* padding: 1rem; */
+    width: 90%; /* Match the width of the sidebar */
+    margin: 0 auto; /* Center the feed horizontally */
     height: auto;
     overflow-y: visible;
-    
   }
 
   .post {
     margin: 1rem 0.5rem;
-    /* padding: 1rem; */
   }
 
   textarea,
