@@ -1,0 +1,263 @@
+body {
+  margin: 0;
+  width: 100%;
+  background-color: #1a1a1a;
+  color: #e0e0e0;
+  font-family: 'Segoe UI', sans-serif;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.09) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.09) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+body::-webkit-scrollbar {
+  width: 0px;
+  background: transparent; /* Make scrollbar transparent */
+}
+
+.app-container {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.sidebar {
+  width: 400px; /* Set sidebar width in pixels */
+  padding: 2rem;
+  border-right: 1px solid #333;
+  margin: 20px;
+  border-radius: 16px;
+  backdrop-filter: blur(2px);
+  border: 0.1rem solid white;
+}
+
+.sidebar h2 {
+  color: #1da1f2;
+  padding-bottom: 2rem;
+  border-bottom: 2px solid white;
+}
+
+.post-form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2rem;
+  width: 100%;
+}
+
+textarea {
+  resize: none;
+  height: 100px;
+  padding: 1rem;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  border-radius: 8px;
+  border: none;
+  background: #2f2f42;
+  color: #fff;
+  margin-bottom: 20px;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+button {
+  padding: 0.5rem 1rem;
+  background-color: #1da1f2;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 6px;
+  margin-right: 0.5rem;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background-color: #0d8de0;
+}
+
+.feed {
+  padding: 2rem;
+  flex-grow: 1;
+  width: 800px;
+  overflow-y: scroll;
+  height: 800px;
+}
+
+.feed::-webkit-scrollbar{
+  display: none;
+}
+
+.post {
+  padding: 1rem;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: #e0e0e0;
+  border: 2px dashed white;
+  margin: 1rem;
+}
+
+.post-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  color: #666;
+
+}
+
+.timestamp {
+  font-size: 0.8rem;
+  color: white;
+}
+
+.username {
+  font-weight: 600;
+  color: white;
+  font-size: 1.2rem;
+}
+
+.post-body {
+  border-left: 2px solid white;
+  padding-left: 1rem;
+  margin-top: 0.5rem;
+  font-weight: 500;
+}
+
+.post-body p {
+  font-size: 1rem;
+}
+
+.post-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+button.like,
+button.liked,
+button.delete {
+  border: none;
+  padding: 0.4rem 0.6rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+
+button.like {
+  background-color: transparent;
+  color: palevioletred;
+  font-weight: 600;
+  font-size: 1rem;
+  background-color: white;
+}
+
+button.liked {
+  background-color: palevioletred;
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+button.delete {
+  background-color: transparent;
+  color: red;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.username-input {
+  resize: none;
+  padding: 1rem;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  border-radius: 8px;
+  border: none;
+  background: #2f2f42;
+  color: #fff;
+  margin-bottom: 20px;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.dropdown {
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  border: none;
+  background-color: #2f2f42;
+  color: white;
+  font-size: 1rem;
+}
+
+
+.dropdown{
+  border-radius: 50%;
+  width: 55px;
+}
+
+.dropdown div{
+  border-radius: 50%;
+  width: 45px;
+}
+
+.color-picker {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.5rem 0;
+  flex-wrap: wrap;
+  margin-top: 8px;
+  margin-bottom: 1rem;
+
+}
+
+.color-circle {
+  width: 36px;
+  height: 36px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.color-circle.selected {
+  border: 2px solid white;
+  width: 32px;
+  height: 32px;
+}
+
+.emoji-picker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.emoji-option {
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 8px;
+  transition: background 0.2s ease;
+}
+
+.emoji-option:hover {
+  background-color: #ececec;
+}
+
+.emoji-option.selected {
+  background-color: #d1d1ff;
+  border: 2px solid #7f08e0;
+}
+
+.change-name{
+  margin-top: 20px;
+}
+
+.username-input{
+  width: 92%;
+}
+
+.change-name-button{
+  width: 100%;
+  margin-top: 10px;
+
+}
