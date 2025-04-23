@@ -23,6 +23,23 @@ const postSchema = new mongoose.Schema({
 
 const Post = mongoose.model("Post", postSchema);
 
+// Define channel schema and model
+const channelSchema = new mongoose.Schema({
+    name: { type: String, required: true, unique: true },
+    password: { type: String, required: true },
+    posts: [
+        {
+            username: { type: String, required: true },
+            content: { type: String, required: true },
+            emoji: { type: String },
+            bgColor: { type: String },
+            createdAt: { type: Date, default: Date.now },
+        },
+    ],
+});
+
+const Channel = mongoose.model("Channel", channelSchema);
+
 // Initialize Express app
 const app = express();
 
@@ -109,6 +126,33 @@ app.post("/posts/:id/like", async (req, res) => {
         }
     } catch (err) {
         res.status(500).json({ error: "Failed to like post" });
+    }
+});
+
+// Create a new channel
+app.post("/channels", async (req, res) => {
+    const { name, password } = req.body;
+    try {
+        const newChannel = new Channel({ name, password, posts: [] });
+        await newChannel.save();
+        res.status(201).json(newChannel);
+    } catch (err) {
+        res.status(500).json({ error: "Failed to create channel" });
+    }
+});
+
+// Validate channel access
+app.post("/channels/validate", async (req, res) => {
+    const { name, password } = req.body;
+    try {
+        const channel = await Channel.findOne({ name });
+        if (channel && channel.password === password) {
+            res.status(200).json(channel);
+        } else {
+            res.status(401).json({ error: "Invalid channel name or password" });
+        }
+    } catch (err) {
+        res.status(500).json({ error: "Failed to validate channel" });
     }
 });
 
