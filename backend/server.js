@@ -21,23 +21,36 @@ const postSchema = new mongoose.Schema({
     bgColor: { type: String }
 });
 
-
 const Post = mongoose.model("Post", postSchema);
 
 // Initialize Express app
 const app = express();
-const PORT = process.env.PORT || 5000;
 
-// Middleware
-// Middleware
+const allowedOrigins = [
+    "https://mini-messanger.vercel.app",   // Frontend hosted on Vercel (production)
+    "http://localhost:3000",                // Local development frontend
+    "https://minimessanger.onrender.com"    // Backend URL for Render (for testing)
+];
+
 app.use(cors({
-    origin: "https://mini-messanger.vercel.app/",  // Allow only requests from your frontend (update this URL if deployed)
+    origin: function (origin, callback) {
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);  // Allow the request
+        } else {
+            callback(new Error("CORS not allowed by this server"));  // Block the request
+        }
+    },
     methods: ["GET", "POST", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type"],
 }));
-app.use(express.json());
 
-// Get all posts
+app.use((req, res, next) => {
+    console.log("Request Origin:", req.headers.origin); // Debugging CORS
+    next();
+});
+
+app.use(express.json());  // Parse JSON bodies
+
 // Get all posts
 app.get("/posts", async (req, res) => {
     try {
@@ -48,7 +61,6 @@ app.get("/posts", async (req, res) => {
         res.status(500).json({ error: "Failed to fetch posts" });
     }
 });
-
 
 // Add a new post
 app.post("/posts", async (req, res) => {
@@ -99,6 +111,7 @@ app.post("/posts/:id/like", async (req, res) => {
 });
 
 // Start the server
+const PORT = process.env.PORT || 5000;  // Default to 5000 if PORT is not set
 app.listen(PORT, () => {
     console.log(`🚀 Server running at http://localhost:${PORT}`);
 });
